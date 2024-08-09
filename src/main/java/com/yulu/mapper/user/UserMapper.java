@@ -10,6 +10,6 @@ public interface UserMapper extends BaseMapper<User> {
     // 查询用户列表
     List<User> findUserList(User user);
 
-    @Select("select * from users where id = #{id}")
-    User findUserOne(String id);
+    @Select("select * from users where cell_phone = #{cellPhone} and password = #{pwd} and del = 1")
+    User findUserOne(String cellPhone, String pwd);
 }

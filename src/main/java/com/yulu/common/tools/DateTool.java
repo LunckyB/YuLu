@@ -56,10 +56,34 @@ public class DateTool {
     }
 
     // 指定时间添加小时
-    public static Date getDateAddHours(Integer addNum) {
-        Date date = getDate();
-//        LocalDateTime.
-        return null;
+    public static Date getDateAddHours(Date date, Integer addNum) {
+        return formatDateCalculate(date, addNum, 3, 1);
+    }
+
+    /**
+     * 日期处理数据
+     * @param date 需要操作的日期
+     * @param num 操作的数量
+     * @param operation 操作类型  1: 秒 2: 分钟 3: 小时 4: 天 5: 星期
+     * @param type 操作的类型 1: 加法 2: 减法
+     * @return
+     */
+    public static Date formatDateCalculate(Date date, Integer num, Integer operation, Integer type) {
+        Long operationNum = 0L; // 需要操作的数量
+        if (operation == 1) { // 秒
+            operationNum = (long) num * 1000;
+        } else if (operation == 2) { // 分钟
+            operationNum = (long) num * 60 * 1000;
+        } else if (operation == 3) { // 小时
+            operationNum = (long) num * 60 * 60 * 1000;
+        } else if (operation == 4) { // 天
+            operationNum = (long) num * 24 * 60 * 60 * 1000;
+        } else if (operation == 5) { // 星期
+            operationNum = (long) num * 7 * 24 * 60 * 60 * 1000;
+        }
+        long time = date.getTime();
+        Date date1 = new Date(time + operationNum);
+        return getFormatDate(DEFAULT_FORMAT, date1);
     }
 
     // 获取格式化方式

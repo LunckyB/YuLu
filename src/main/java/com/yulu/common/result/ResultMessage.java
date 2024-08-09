@@ -1,7 +1,7 @@
 package com.yulu.common.result;
 
 import com.yulu.common.enums.Constants;
-import com.yulu.common.tools.VerifyUtils;
+import com.yulu.common.tools.VerifyTool;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,7 +34,7 @@ public class ResultMessage<T> implements Serializable {
         this.success = true;
         this.msg = "操作成功";
 
-        if (VerifyUtils.isNotNull(data)) {
+        if (VerifyTool.isNotNull(data)) {
             this.data = data;
         }
     }
@@ -49,7 +49,7 @@ public class ResultMessage<T> implements Serializable {
         this.code = code;
         this.msg = msg;
         this.success = Constants.REQUEST_SUCCESS == code;
-        if (VerifyUtils.isNotNull(data)) {
+        if (VerifyTool.isNotNull(data)) {
             this.data = data;
         }
     }
@@ -74,6 +74,10 @@ public class ResultMessage<T> implements Serializable {
     // 返回成功消息
     public static <T> ResultMessage<T> success(String msg) {
         return new ResultMessage<>(Constants.REQUEST_SUCCESS, msg);
+    }
+
+    public static <T> ResultMessage<T> token(T data) {
+        return new ResultMessage<>(data);
     }
 
     // 返回错误消息

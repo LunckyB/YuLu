@@ -1,6 +1,6 @@
 package com.yulu.common.tools;
 
-public class VerifyUtils extends org.apache.commons.lang3.StringUtils {
+public class VerifyTool extends org.apache.commons.lang3.StringUtils {
     private static final String NULLSTR = ""; // 空字符串
 
     // 判断一个字符串是否为空串
